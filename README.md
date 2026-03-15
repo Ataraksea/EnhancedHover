@@ -1,4 +1,6 @@
-## Enhanced Hover
+<div align="center">
+  <h1>Enhanced Hover</h1>
+</div>
 
 Enhanced Hover is a VS Code extension that adds AI-assisted code hovers and a symbol details sidebar for TypeScript, JavaScript, and Python.
 
@@ -8,7 +10,7 @@ It combines local editor context with the VS Code language model API to explain 
 
 ![](media/preview.gif)
 
-### Features
+## Features
 
 - Hover summaries for supported languages.
 - A right-click command to open symbol details directly.
@@ -17,19 +19,19 @@ It combines local editor context with the VS Code language model API to explain 
 - Configurable model selection through the VS Code language model API.
 - Built-in diagnostics command for troubleshooting editor/model integration issues.
 
-### Currently Supported Languages
+## Currently Supported Languages
 
 - TypeScript
 - JavaScript
 - Python
 
-### Requirements
+## Requirements
 
 - VS Code `^1.100.0`
 - Access to a compatible model through the VS Code language model API
 - GitHub Copilot or another supported provider configured in VS Code, depending on the selected model vendor
 
-### Usage
+## Usage
 
 1. Open a supported source file.
 2. Hover a symbol to see the short explanation.
@@ -38,14 +40,14 @@ It combines local editor context with the VS Code language model API to explain 
 
 If AI access is unavailable, the extension falls back to local symbol analysis so the sidebar still shows useful information.
 
-### Commands
+## Commands
 
 - `Enhanced Hover: Initialize AI Access`
 - `Enhanced Hover: Open Symbol Details`
 - `Enhanced Hover: Refresh Current Symbol`
 - `Enhanced Hover: Run Diagnostics`
 
-### Settings
+## Settings
 
 - `enhancedHover.prefetchEnabled`
 - `enhancedHover.hoverDwellMs`
@@ -57,7 +59,7 @@ If AI access is unavailable, the extension falls back to local symbol analysis s
 - `enhancedHover.model.id`
 - `enhancedHover.model.version`
 
-### Development
+## Development
 
 ```bash
 npm install
@@ -68,7 +70,7 @@ npm test
 
 Launch the extension with `F5` in VS Code to open an Extension Development Host.
 
-### Integration Tests
+## Integration Tests
 
 ```bash
 npm run test:integration
@@ -76,11 +78,11 @@ npm run test:integration
 
 This downloads a VS Code test build into `.vscode-test/`, launches the extension in an isolated host, and runs end-to-end integration tests against `test-fixtures/`.
 
-### Notes
+## Notes
 
 - This extension uses the VS Code language model API. It does not require direct third-party API keys in the extension itself.
 - The `Run Diagnostics` command is intended for troubleshooting model access, symbol resolution, and sidebar rendering.
 
-### License
+## License
 
 MIT. See `LICENSE.md`.
