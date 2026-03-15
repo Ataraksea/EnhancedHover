@@ -1,0 +1,5 @@
+- Keep the extension desktop-focused and TypeScript-first.
+- Preserve support for TypeScript, JavaScript, and Python in hover selectors and tests.
+- Use the VS Code language model API for AI features; do not add direct third-party API keys.
+- Keep prompts grounded in symbol context gathered from VS Code providers.
+- Favor small, testable modules over large activation files.

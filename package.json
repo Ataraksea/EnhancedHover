@@ -1,0 +1,179 @@
+{
+  "name": "enhanced-hover",
+  "displayName": "Enhanced Hover",
+  "description": "AI-assisted code hover summaries and detailed symbol explanations for TypeScript, JavaScript, and Python.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ataraksea/enhancedhover.git"
+  },
+  "version": "0.0.1",
+  "publisher": "Ataraksea",
+  "license": "MIT",
+  "keywords": [
+    "vscode",
+    "extension",
+    "hover",
+    "ai",
+    "copilot",
+    "typescript",
+    "javascript",
+    "python"
+  ],
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:python"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "enhancedHover.initializeAiAccess",
+        "title": "Enhanced Hover: Initialize AI Access"
+      },
+      {
+        "command": "enhancedHover.openDetails",
+        "title": "Enhanced Hover: Open Symbol Details"
+      },
+      {
+        "command": "enhancedHover.refreshCurrentSymbol",
+        "title": "Enhanced Hover: Refresh Current Symbol"
+      },
+      {
+        "command": "enhancedHover.diagnose",
+        "title": "Enhanced Hover: Run Diagnostics"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "enhancedHover-sidebar",
+          "title": "Enhanced Hover",
+          "icon": "media/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "enhancedHover-sidebar": [
+        {
+          "type": "webview",
+          "id": "enhancedHover.detailsView",
+          "name": "Symbol Details",
+          "icon": "media/sidebar-icon.svg"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "enhancedHover.openDetails",
+          "when": "editorTextFocus && (editorLangId == typescript || editorLangId == typescriptreact || editorLangId == javascript || editorLangId == javascriptreact || editorLangId == python)",
+          "group": "navigation@20"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "enhancedHover.initializeAiAccess",
+          "when": "view == enhancedHover.detailsView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "enhancedHover.refreshCurrentSymbol",
+          "when": "view == enhancedHover.detailsView",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Enhanced Hover",
+      "properties": {
+        "enhancedHover.prefetchEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prefetch AI hover summaries after a short hover dwell once AI access has been initialized."
+        },
+        "enhancedHover.hoverDwellMs": {
+          "type": "number",
+          "default": 900,
+          "minimum": 200,
+          "description": "How long the cursor must remain over a symbol before background summary prefetch starts."
+        },
+        "enhancedHover.cacheTtlMs": {
+          "type": "number",
+          "default": 300000,
+          "minimum": 30000,
+          "description": "How long cached symbol explanations remain valid."
+        },
+        "enhancedHover.maxContextLines": {
+          "type": "number",
+          "default": 40,
+          "minimum": 10,
+          "maximum": 120,
+          "description": "Maximum number of source lines to include around a symbol definition when prompting the model."
+        },
+        "enhancedHover.requestTimeoutMs": {
+          "type": "number",
+          "default": 30000,
+          "minimum": 5000,
+          "maximum": 120000,
+          "description": "Maximum time to wait for a language model selection or response before Enhanced Hover fails the request."
+        },
+        "enhancedHover.model.vendor": {
+          "type": "string",
+          "default": "copilot",
+          "description": "Preferred language model vendor for the VS Code language model API."
+        },
+        "enhancedHover.model.family": {
+          "type": "string",
+          "default": "gpt-4o-mini",
+          "description": "Preferred language model family. Leave empty to let VS Code choose from the selected vendor."
+        },
+        "enhancedHover.model.id": {
+          "type": "string",
+          "default": "",
+          "description": "Optional explicit model id."
+        },
+        "enhancedHover.model.version": {
+          "type": "string",
+          "default": "",
+          "description": "Optional explicit model version."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "compile:integration": "tsc -p src/test-integration/tsconfig.json",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext .ts",
+    "test": "npm run compile && node --test \"out/test/**/*.test.js\"",
+    "test:integration": "npm run compile && npm run compile:integration && node src/test-integration/runTests.js",
+    "check": "npm run lint && npm run test"
+  },
+  "overrides": {
+    "diff": "8.0.2",
+    "serialize-javascript": "7.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.13.10",
+    "@types/vscode": "^1.100.0",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.22.0",
+    "glob": "^13.0.6",
+    "mocha": "^11.7.5",
+    "typescript": "^5.8.2"
+  }
+}
