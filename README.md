@@ -4,6 +4,8 @@ Enhanced Hover is a VS Code extension that adds AI-assisted code hovers and a sy
 
 It combines local editor context with the VS Code language model API to explain symbols, show their definition, and surface real usage examples from the workspace.
 
+[Download](https://marketplace.visualstudio.com/items?itemName=Ataraksea.enhanced-hover)
+
 ![](media/preview.gif)
 
 ### Features
